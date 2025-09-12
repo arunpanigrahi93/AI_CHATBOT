@@ -44,8 +44,12 @@ const App = () => {
             <button type="button" className="material-symbols-outlined">
               sentiment_satisfied
             </button>
-            <button className="material-symbols-outlined">attach_file</button>
-            <button className="material-symbols-outlined">arrow_upward</button>
+            <button type="button" className="material-symbols-outlined">
+              attach_file
+            </button>
+            <button type="submit" className="material-symbols-outlined">
+              arrow_upward
+            </button>
           </div>
         </form>
       </div>
