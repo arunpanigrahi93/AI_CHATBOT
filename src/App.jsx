@@ -27,8 +27,7 @@ const App = () => {
         </div>
         <div className="message user-message">
           <div className="message-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-            itaque.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </div>
         </div>
       </div>
