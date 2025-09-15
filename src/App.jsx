@@ -1,10 +1,10 @@
 // App.jsx
 import React, { useState } from "react";
 import ChatbotIcon from "./components/ChatbotIcon";
+import ChatForm from "./components/ChatForm";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState("");
 
   return (
     <>
@@ -67,40 +67,7 @@ const App = () => {
 
             {/* Footer */}
             <div className="chat-footer">
-              <form
-                action="#"
-                className="chat-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (message.trim()) {
-                    console.log("Send:", message);
-                    setMessage("");
-                  }
-                }}
-              >
-                <textarea
-                  placeholder="Message..."
-                  className="message-input"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                ></textarea>
-
-                <div className="chat-controls">
-                  <button type="button" className="material-symbols-outlined">
-                    sentiment_satisfied
-                  </button>
-                  <button type="button" className="material-symbols-outlined">
-                    attach_file
-                  </button>
-
-                  {/* Show send button only if message is typed */}
-                  {message.trim() && (
-                    <button type="submit" className="material-symbols-outlined">
-                      arrow_upward
-                    </button>
-                  )}
-                </div>
-              </form>
+              <ChatForm />
             </div>
           </div>
         )}
