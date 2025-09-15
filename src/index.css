@@ -74,7 +74,32 @@ body{
 }
 .chat-body .message {
     display: flex;
+    gap: 11px;
     align-items: center;
+}
+.chat-body .bot-message .bot-avatar {
+        height: 35px;
+    width: 35px;
+    padding: 6px;
+    fill: fff;
+    fill: #fff;
+    flex-shrink: 0;
+    margin-bottom: 2px;
+    align-self: flex-end;
+    background: #5350C4;
+    border-radius: 50%;
+}
+
+.chat-body .user-message {
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.chat-body .message .message-text {
+    padding: 12px 16px;
+    max-width: 75%;
+    font-size: 0.95rem;
+    background: #F2F2FF;
 }
 .chat-footer{
     position: absolute;
