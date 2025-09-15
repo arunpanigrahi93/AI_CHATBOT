@@ -8,9 +8,9 @@
 }
 
 body {
-  background: linear-gradient(#EEEEFF, #C8C7FF);
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  min-height: 100vh;
 }
-
 /* Container fixed bottom-right */
 .chatbot-container {
   position: fixed;
@@ -18,7 +18,19 @@ body {
   right: 20px;
   z-index: 999;
 }
-
+.intro-banner {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #667eea, #764ba2); /* purple-blue */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
 /* Floating button */
 .chatbot-toggle {
   background: #5350C4;
