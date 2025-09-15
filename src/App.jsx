@@ -8,6 +8,10 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
 
+  const generateBotResponse = (history) => {
+    console.log(history);
+  };
+
   return (
     <>
       <div className="chatbot-container">
@@ -67,7 +71,11 @@ const App = () => {
 
             {/* Footer */}
             <div className="chat-footer">
-              <ChatForm setChatHistory={setChatHistory} />
+              <ChatForm
+                setChatHistory={setChatHistory}
+                generateBotResponse={generateBotResponse}
+                chatHistory={chatHistory}
+              />
             </div>
           </div>
         )}
