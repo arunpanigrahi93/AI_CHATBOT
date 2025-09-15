@@ -1,15 +1,29 @@
 import React, { useRef, useState } from "react";
 
-const ChatForm = () => {
+const ChatForm = ({ setChatHistory }) => {
   const [message, setMessage] = useState("");
   const inputRef = useRef();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const userMessage = inputRef.current.value.trim();
+    const userMessage = message.trim();
     if (!userMessage) return;
-    inputRef.current.value = "";
-    console.log(userMessage);
+
+    // 1. Add user message immediately
+    setChatHistory((history) => [
+      ...history,
+      { role: "user", text: userMessage },
+    ]);
+
+    setMessage(""); // clear input box
+
+    // 2. Add bot "Thinking..." after delay
+    setTimeout(() => {
+      setChatHistory((history) => [
+        ...history,
+        { role: "model", text: "Thinking..." },
+      ]);
+    }, 600);
   };
 
   return (
@@ -22,16 +36,9 @@ const ChatForm = () => {
           className="message-input"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-        ></input>
+        />
 
         <div className="chat-controls">
-          {/* <button type="button" className="material-symbols-outlined">
-            sentiment_satisfied
-          </button>
-          <button type="button" className="material-symbols-outlined">
-            attach_file
-          </button> */}
-
           {/* Show send button only if message is typed */}
           {message.trim() && (
             <button type="submit" className="material-symbols-outlined">
