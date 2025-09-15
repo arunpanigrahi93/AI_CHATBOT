@@ -34,17 +34,28 @@ const App = () => {
 
           {/* Body */}
           <div className="chat-body">
+            {/* Bot message with avatar */}
             <div className="message bot-message">
+              <div className="bot-avatar">
+                <ChatbotIcon />
+              </div>
               <div className="message-text">
                 👋 Hey there! <br /> How can I help you today?
               </div>
             </div>
+
+            {/* User message */}
             <div className="message user-message">
               <div className="message-text">
                 Lorem ipsum dolor sit amet consectetur.
               </div>
             </div>
+
+            {/* Bot typing */}
             <div className="message bot-message">
+              <div className="bot-avatar">
+                <ChatbotIcon />
+              </div>
               <div className="message-text">
                 <div className="thinking-indicator">
                   <div className="dot"></div>

@@ -36,6 +36,8 @@ body {
 /* Chat window */
 .chatbot-popup {
   width: 380px;
+  height: 600px; /* Increased height */
+  max-height: 80vh;
   background: #fff;
   border-radius: 15px;
   box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5);
@@ -81,11 +83,11 @@ body {
   flex-direction: column;
   gap: 12px;
   overflow-y: auto;
-  height: 300px;
 }
 .chat-body .message {
   display: flex;
   gap: 10px;
+  align-items: flex-start;
 }
 .chat-body .message-text {
   padding: 10px 14px;
@@ -106,6 +108,23 @@ body {
   border-radius: 12px 12px 3px 12px;
 }
 
+/* Bot avatar */
+.bot-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #5350C4; /* matches header theme */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bot-avatar svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff; /* white icon inside */
+}
 /* Footer */
 .chat-footer {
   border-top: 1px solid #eee;
