@@ -1,12 +1,10 @@
 /* ===== Page Background ===== */
 body {
-  margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+  background: url("./assets/bot.jpg") no-repeat center center fixed;
+  background-size: cover;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 /* ===== Intro Text ===== */

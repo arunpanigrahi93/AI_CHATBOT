@@ -8,7 +8,6 @@ const App = () => {
 
   return (
     <>
-      <div className="intro">Hello Guys How can I help you</div>
       <div className="chatbot-container">
         {/* Chatbot Toggle Button */}
         {!isOpen && (
