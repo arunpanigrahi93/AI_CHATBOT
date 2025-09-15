@@ -1,27 +1,28 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const ChatForm = () => {
   const [message, setMessage] = useState("");
+  const inputRef = useRef();
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const userMessage = inputRef.current.value.trim();
+    if (!userMessage) return;
+    inputRef.current.value = "";
+    console.log(userMessage);
+  };
 
   return (
     <div>
-      <form
-        action="#"
-        className="chat-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (message.trim()) {
-            console.log("Send:", message);
-            setMessage("");
-          }
-        }}
-      >
-        <textarea
+      <form action="#" className="chat-form" onSubmit={handleFormSubmit}>
+        <input
+          ref={inputRef}
+          type="text"
           placeholder="Message..."
           className="message-input"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-        ></textarea>
+        ></input>
 
         <div className="chat-controls">
           {/* <button type="button" className="material-symbols-outlined">
