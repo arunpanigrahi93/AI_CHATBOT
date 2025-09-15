@@ -126,8 +126,8 @@ body {
 }
 
 .bot-avatar {
-  width: 32px;
-  height: 32px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   margin-right: 8px;
   display: flex;
@@ -221,4 +221,12 @@ body {
 
 .chat-controls button:hover {
   color: #000;
+}
+.chat-controls button[type="submit"] {
+  color: #007bff; /* blue */
+  font-weight: bold;
+}
+
+.chat-controls button[type="submit"]:hover {
+  color: #0056b3; /* darker blue on hover */
 }
