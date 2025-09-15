@@ -4,10 +4,11 @@ import ChatbotIcon from "./components/ChatbotIcon";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
   return (
     <>
-      <div className="intro-banner">Hello Guys, How can I help you?</div>
+      <div className="intro">Hello Guys How can I help you</div>
       <div className="chatbot-container">
         {/* Chatbot Toggle Button */}
         {!isOpen && (
@@ -36,7 +37,6 @@ const App = () => {
 
             {/* Body */}
             <div className="chat-body">
-              {/* Bot message with avatar */}
               <div className="message bot-message">
                 <div className="bot-avatar">
                   <ChatbotIcon />
@@ -46,14 +46,12 @@ const App = () => {
                 </div>
               </div>
 
-              {/* User message */}
               <div className="message user-message">
                 <div className="message-text">
                   Lorem ipsum dolor sit amet consectetur.
                 </div>
               </div>
 
-              {/* Bot typing */}
               <div className="message bot-message">
                 <div className="bot-avatar">
                   <ChatbotIcon />
@@ -70,11 +68,24 @@ const App = () => {
 
             {/* Footer */}
             <div className="chat-footer">
-              <form action="#" className="chat-form">
+              <form
+                action="#"
+                className="chat-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (message.trim()) {
+                    console.log("Send:", message);
+                    setMessage("");
+                  }
+                }}
+              >
                 <textarea
                   placeholder="Message..."
                   className="message-input"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
+
                 <div className="chat-controls">
                   <button type="button" className="material-symbols-outlined">
                     sentiment_satisfied
@@ -82,9 +93,13 @@ const App = () => {
                   <button type="button" className="material-symbols-outlined">
                     attach_file
                   </button>
-                  <button type="submit" className="material-symbols-outlined">
-                    arrow_upward
-                  </button>
+
+                  {/* Show send button only if message is typed */}
+                  {message.trim() && (
+                    <button type="submit" className="material-symbols-outlined">
+                      arrow_upward
+                    </button>
+                  )}
                 </div>
               </form>
             </div>
