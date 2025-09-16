@@ -17,10 +17,10 @@ const ChatForm = ({ chatHistory, setChatHistory, generateBotResponse }) => {
     setMessage("");
 
     // Add placeholder "Thinking..." message
-    setChatHistory((history) => [
-      ...history,
-      { role: "model", text: "Thinking..." },
-    ]);
+    // setChatHistory((history) => [
+    //   ...history,
+    //   { role: "model", text: "Thinking..." },
+    // ]);
 
     generateBotResponse([...chatHistory, { role: "user", text: userMessage }]);
   };
