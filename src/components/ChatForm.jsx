@@ -27,7 +27,7 @@ const ChatForm = ({ chatHistory, setChatHistory, generateBotResponse }) => {
         ...chatHistory,
         { role: "user", text: userMessage },
       ]);
-    }, 600);
+    }, 500);
   };
 
   return (
