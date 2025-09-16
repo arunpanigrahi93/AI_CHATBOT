@@ -1,11 +1,7 @@
-// App.jsx
 import React, { useState } from "react";
 import ChatbotIcon from "./components/ChatbotIcon";
 import ChatForm from "./components/ChatForm";
 import ChatMessage from "./components/ChatMessage";
-
-const GEMINI_API_BASE =
-  "https://generativelanguage.googleapis.com/v1beta/models";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +9,6 @@ const App = () => {
   const [loading, setLoading] = useState(false);
 
   const generateBotResponse = async (history) => {
-    // Get only the last user message
     const lastUserMessage = history[history.length - 1];
 
     const formatted = [
@@ -46,12 +41,15 @@ const App = () => {
         data?.candidates?.[0]?.content?.parts?.[0]?.text ||
         "⚠️ Sorry, I couldn’t generate a response.";
 
-      setChatHistory((prev) => [...prev, { sender: "bot", text: botMessage }]);
+      setChatHistory((prev) => [
+        ...prev.filter((msg) => msg.text !== "Thinking..."), // remove placeholder
+        { role: "model", text: botMessage },
+      ]);
     } catch (error) {
       console.error("Gemini API Error:", error);
       setChatHistory((prev) => [
         ...prev,
-        { sender: "bot", text: "⚠️ Oops! Something went wrong." },
+        { role: "model", text: "⚠️ Oops! Something went wrong." },
       ]);
     } finally {
       setLoading(false);
@@ -83,6 +81,7 @@ const App = () => {
           </div>
 
           <div className="chat-body">
+            {/* Default Welcome Message */}
             <div className="message bot-message">
               <div className="bot-avatar">
                 <ChatbotIcon />
@@ -92,10 +91,12 @@ const App = () => {
               </div>
             </div>
 
+            {/* Chat History */}
             {chatHistory.map((chat, index) => (
               <ChatMessage key={index} chat={chat} />
             ))}
 
+            {/* Thinking Indicator */}
             {loading && (
               <div className="message bot-message">
                 <div className="bot-avatar">

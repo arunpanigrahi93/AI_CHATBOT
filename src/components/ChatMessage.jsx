@@ -2,16 +2,22 @@ import React from "react";
 import ChatbotIcon from "./ChatbotIcon";
 
 const ChatMessage = ({ chat }) => {
-  return (
-    <div
-      className={`message ${chat.role === "model" ? "bot" : "user"}-message`}
-    >
-      {chat.role === "model" && (
+  if (chat.role === "model") {
+    // Bot message
+    return (
+      <div className="message bot-message">
         <div className="bot-avatar">
           <ChatbotIcon />
         </div>
-      )}
-      <p className="message-text">{chat.text}</p>
+        <div className="message-text">{chat.text}</div>
+      </div>
+    );
+  }
+
+  // User message
+  return (
+    <div className="message user-message">
+      <div className="message-text">{chat.text}</div>
     </div>
   );
 };
