@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ChatbotIcon from "./components/ChatbotIcon";
 import ChatForm from "./components/ChatForm";
 import ChatMessage from "./components/ChatMessage";
@@ -7,6 +7,7 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
+  const chatBodyRef = useRef(null);
 
   const generateBotResponse = async (history) => {
     const lastUserMessage = history[history.length - 1];
@@ -19,6 +20,9 @@ const App = () => {
     ];
 
     setLoading(true);
+
+    // Add temporary "Thinking..." placeholder
+    setChatHistory((prev) => [...prev, { role: "model", text: "Thinking..." }]);
 
     try {
       const response = await fetch(
@@ -48,13 +52,22 @@ const App = () => {
     } catch (error) {
       console.error("Gemini API Error:", error);
       setChatHistory((prev) => [
-        ...prev,
+        ...prev.filter((msg) => msg.text !== "Thinking..."),
         { role: "model", text: "⚠️ Oops! Something went wrong." },
       ]);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTo({
+        top: chatBodyRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [chatHistory]);
 
   return (
     <div className="chatbot-container">
@@ -80,7 +93,7 @@ const App = () => {
             </button>
           </div>
 
-          <div className="chat-body">
+          <div ref={chatBodyRef} className="chat-body">
             {/* Default Welcome Message */}
             <div className="message bot-message">
               <div className="bot-avatar">
@@ -96,21 +109,22 @@ const App = () => {
               <ChatMessage key={index} chat={chat} />
             ))}
 
-            {/* Thinking Indicator */}
-            {loading && (
-              <div className="message bot-message">
-                <div className="bot-avatar">
-                  <ChatbotIcon />
-                </div>
-                <div className="message-text">
-                  <div className="thinking-indicator">
-                    <div className="dot"></div>
-                    <div className="dot"></div>
-                    <div className="dot"></div>
+            {/* Loading dots while waiting */}
+            {loading &&
+              chatHistory.some((msg) => msg.text === "Thinking...") && (
+                <div className="message bot-message">
+                  <div className="bot-avatar">
+                    <ChatbotIcon />
+                  </div>
+                  <div className="message-text">
+                    <div className="thinking-indicator">
+                      <div className="dot"></div>
+                      <div className="dot"></div>
+                      <div className="dot"></div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
 
           <div className="chat-footer">
