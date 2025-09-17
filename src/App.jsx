@@ -1,3 +1,4 @@
+// App.jsx
 import React, { useState, useRef, useEffect } from "react";
 import ChatbotIcon from "./components/ChatbotIcon";
 import ChatForm from "./components/ChatForm";
@@ -20,8 +21,6 @@ const App = () => {
     ];
 
     setLoading(true);
-
-    // Add temporary "Thinking..." placeholder
     setChatHistory((prev) => [...prev, { role: "model", text: "Thinking..." }]);
 
     try {
@@ -37,16 +36,15 @@ const App = () => {
       );
 
       const data = await response.json();
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error(data.error?.message || "Something went wrong!");
-      }
 
       const botMessage =
         data?.candidates?.[0]?.content?.parts?.[0]?.text ||
         "⚠️ Sorry, I couldn’t generate a response.";
 
       setChatHistory((prev) => [
-        ...prev.filter((msg) => msg.text !== "Thinking..."), // remove placeholder
+        ...prev.filter((msg) => msg.text !== "Thinking..."),
         { role: "model", text: botMessage },
       ]);
     } catch (error) {
@@ -71,12 +69,17 @@ const App = () => {
 
   return (
     <div className="chatbot-container">
-      {!isOpen && (
-        <button className="chatbot-toggle" onClick={() => setIsOpen(true)}>
-          <ChatbotIcon />
-        </button>
-      )}
+      {/* Floating toggle button */}
+      <button
+        className="chatbot-toggle"
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        <span className="material-symbols-rounded">
+          {isOpen ? "close" : "mode_comment"}
+        </span>
+      </button>
 
+      {/* Chat popup */}
       {isOpen && (
         <div className="chatbot-popup">
           <div className="chat-header">
@@ -84,17 +87,10 @@ const App = () => {
               <ChatbotIcon />
               <h2 className="logo-text">Chatbot</h2>
             </div>
-            <button
-              id="toggle-chatbot"
-              className="material-symbols-rounded"
-              onClick={() => setIsOpen(false)}
-            >
-              keyboard_arrow_down
-            </button>
           </div>
 
           <div ref={chatBodyRef} className="chat-body">
-            {/* Default Welcome Message */}
+            {/* Default Welcome */}
             <div className="message bot-message">
               <div className="bot-avatar">
                 <ChatbotIcon />
@@ -109,7 +105,7 @@ const App = () => {
               <ChatMessage key={index} chat={chat} />
             ))}
 
-            {/* Loading dots while waiting */}
+            {/* Thinking dots */}
             {loading &&
               chatHistory.some((msg) => msg.text === "Thinking...") && (
                 <div className="message bot-message">

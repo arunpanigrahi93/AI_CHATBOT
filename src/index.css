@@ -5,15 +5,7 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-}
-
-/* ===== Intro Text ===== */
-.intro {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #fff;
+  font-family: Arial, sans-serif;
 }
 
 /* ===== Chatbot Container ===== */
@@ -21,9 +13,10 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  z-index: 999;
 }
 
-/* ===== Toggle Button ===== */
+/* ===== Toggle Button (Message/Close) ===== */
 .chatbot-toggle {
   width: 60px;
   height: 60px;
@@ -38,12 +31,20 @@ body {
   transition: transform 0.2s ease-in-out;
 }
 
+.chatbot-toggle span {
+  font-size: 28px;
+  color: #fff;
+}
+
 .chatbot-toggle:hover {
   transform: scale(1.1);
 }
 
 /* ===== Popup Window ===== */
 .chatbot-popup {
+  position: fixed;
+  bottom: 90px; /* sits above the button */
+  right: 20px;
   width: 350px;
   height: 500px;
   background: #fff;
@@ -85,14 +86,6 @@ body {
 .logo-text {
   font-size: 18px;
   font-weight: bold;
-}
-
-#toggle-chatbot {
-  border: none;
-  background: transparent;
-  color: white;
-  font-size: 28px;
-  cursor: pointer;
 }
 
 /* ===== Chat Body ===== */
@@ -220,6 +213,7 @@ body {
 .chat-controls button:hover {
   color: #000;
 }
+
 .chat-controls button[type="submit"] {
   color: #007bff; /* blue */
   font-weight: bold;
