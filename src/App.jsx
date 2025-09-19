@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState, useRef, useEffect } from "react";
 import ChatbotIcon from "./components/ChatbotIcon";
 import ChatForm from "./components/ChatForm";
