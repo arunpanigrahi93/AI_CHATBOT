@@ -57,15 +57,6 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTo({
-        top: chatBodyRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-    }
-  }, [chatHistory]);
-
   return (
     <div className="chatbot-container">
       {/* Floating toggle button */}
