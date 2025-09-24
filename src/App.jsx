@@ -122,13 +122,13 @@ const App = () => {
               )}
           </div>
 
-          {/* <div className="chat-footer">
+          <div className="chat-footer">
             <ChatForm
               setChatHistory={setChatHistory}
               generateBotResponse={generateBotResponse}
               chatHistory={chatHistory}
             />
-          </div> */}
+          </div>
         </div>
       )}
     </div>
