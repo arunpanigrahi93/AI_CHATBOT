@@ -210,6 +210,10 @@ body {
   color: #666;
 }
 
+.chat-controls button:hover {
+  color: #000;
+}
+
 .chat-controls button[type="submit"] {
   color: #007bff; /* blue */
   font-weight: bold;
